@@ -27,6 +27,16 @@ public class MeshObject : MonoBehaviour
     Color color;
 
     Mesh mesh;
+    float sinGen = 0;
+
+    [SerializeField]
+    float yBounce = 1;
+    [SerializeField]
+    float xBounce = 1;
+    [SerializeField]
+    float xDist = 1;
+    [SerializeField]
+    float yDist = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +60,11 @@ public class MeshObject : MonoBehaviour
         mesh.triangles = meshData.triangles;
         Debug.Log(meshData.vertices);
         Debug.Log(meshData.triangles);
+    }
 
+    void FixedUpdate()
+    {
+        sinGen++;
+        transform.position = new Vector3(Mathf.Cos(sinGen * xBounce) * xDist, Mathf.Sin(sinGen * yBounce) * yDist, 0);
     }
 }
