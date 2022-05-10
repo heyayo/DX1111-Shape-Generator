@@ -12,6 +12,9 @@ public class MeshObject : MonoBehaviour
     bool startAtOrigin = false;
 
     [SerializeField]
+    bool waveRotate = false;
+
+    [SerializeField]
     float xScale = 1;
 
     [SerializeField]
@@ -38,6 +41,9 @@ public class MeshObject : MonoBehaviour
     [SerializeField]
     float yDist = 1;
 
+    [SerializeField]
+    Transform parent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +52,7 @@ public class MeshObject : MonoBehaviour
         if(startAtOrigin)
             transform.position = new Vector3(0, 0, 0);
 
+        transform.parent = parent;
         InitialiseMesh();
 
         GetComponent<Renderer>().material.color = color;
@@ -64,7 +71,10 @@ public class MeshObject : MonoBehaviour
 
     void FixedUpdate()
     {
-        sinGen++;
-        transform.position = new Vector3(Mathf.Cos(sinGen * xBounce) * xDist, Mathf.Sin(sinGen * yBounce) * yDist, 0);
+        if (waveRotate)
+        {
+            sinGen++;
+            transform.position = new Vector3(Mathf.Cos(sinGen * xBounce) * xDist, Mathf.Sin(sinGen * yBounce) * yDist, 0);
+        }
     }
 }

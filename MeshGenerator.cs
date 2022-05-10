@@ -41,7 +41,7 @@ public class MeshGenerator
         mesh.vertices[0] = new Vector3(0,0);
         for (int i = 0; i < res; i++)
         {
-            mesh.vertices[i+1] = new Vector3((Mathf.Sin(switchAngle * i) + rotation) * xScale, (Mathf.Cos(switchAngle * i) + rotation) * yScale);
+            mesh.vertices[i+1] = new Vector3(Mathf.Sin(switchAngle * i + rotation) * xScale, Mathf.Cos(switchAngle * i + rotation) * yScale);
             Debug.Log(mesh.vertices[i+1]);
             Debug.Log(switchAngle * i);
             Debug.Log("VERTICE");
