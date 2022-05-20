@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class sinScript : MonoBehaviour
+{
+	float orbitSin = 0;
+	float scaleSin = 0;
+	public bool orbit = false;
+	public float xOrbit = 1;
+	public float yOrbit = 1;
+	public float uniOrbit = 1;
+	public float xOrbitRate = 1;
+	public float yOrbitRate = 1;
+	public float uniOrbitRate = 1;
+	public bool scaler = false;
+	public float xScaler = 1;
+	public float yScaler = 1;
+	public float uniScaler = 1;
+	public float scaleRate = 1;
+		
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+		if (orbit)
+		{
+			orbitSin++;
+			transform.position = new Vector3(Mathf.Cos(orbitSin * xOrbitRate*uniOrbitRate/10) * (xOrbit*uniOrbit), Mathf.Sin(orbitSin * yOrbitRate*uniOrbitRate/10) * (yOrbit*uniOrbit), 0);
+		}
+		if (scaler)
+		{
+			scaleSin++;
+			transform.localScale += new Vector3(Mathf.Sin(scaleSin * scaleRate) * (xScaler*uniScaler/10),Mathf.Sin(scaleSin * scaleRate) * (yScaler*uniScaler/10));
+		}
+    }
+}

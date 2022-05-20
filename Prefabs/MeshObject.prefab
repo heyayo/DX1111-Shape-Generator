@@ -29,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.7471219, y: 0.28508803, z: -0.43790707}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: f9507cb7793a6c5468ebe94a81aed570, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,3 +97,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshType: 0
+  startAtOrigin: 0
+  waveRotate: 0
+  xScale: 0.1
+  yScale: 0.1
+  rotation: 0
+  resolution: 3
+  color: {r: 0, g: 0, b: 0, a: 0}
+  yBounce: 1
+  xBounce: 1
+  xDist: 1
+  yDist: 1
+  rotateRate: 0
+  rotate: 0
+  parent: {fileID: 0}

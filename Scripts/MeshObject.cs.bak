@@ -24,6 +24,11 @@ public class MeshObject : MonoBehaviour
     Color Initialcolor;
 
     Mesh mesh;
+
+    [SerializeField]
+    float rotateRate = 0;
+    [SerializeField]
+    bool rotate = false;
 	
 	[SerializeField]
 	bool scaling = false;
@@ -62,6 +67,10 @@ public class MeshObject : MonoBehaviour
 
     void FixedUpdate()
     {
+		if (rotate)
+		{
+			transform.Rotate(0,0,rotateRate,Space.Self);
+		}
 		if (scaling)
 		{
 			transform.localScale += new Vector3(xScaleRate,yScaleRate);
