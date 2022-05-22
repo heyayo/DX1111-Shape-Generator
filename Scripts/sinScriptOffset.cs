@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sinScript : MonoBehaviour
+public class sinScriptOffset : MonoBehaviour
 {
 	float orbitSin = 0;
 	float sinOrbitSin = 0;
-	float scaleSin = 0;
 
 	public bool orbit = false;
 	public float xOrbit = 1;
@@ -15,6 +14,8 @@ public class sinScript : MonoBehaviour
 	public float xOrbitRate = 1;
 	public float yOrbitRate = 1;
 	public float uniOrbitRate = 1;
+	public float orbitOffsetX = 0;
+	public float orbitOffsetY = 0;
 
 	public bool sinOnlyOrbit = false;
 	public float xSinOrbit = 1;
@@ -23,12 +24,9 @@ public class sinScript : MonoBehaviour
 	public float xSinOrbitRate = 1;
 	public float ySinOrbitRate = 1;
 	public float sinUniOrbitRate = 1;
-
-	public bool scaler = false;
-	public float xScaler = 1;
-	public float yScaler = 1;
-	public float uniScaler = 1;
-	public float scaleRate = 1;
+	public float sinOrbitOffsetX = 0;
+	public float sinOrbitOffsetY = 0;
+	int zVal = 1;
 		
     // Start is called before the first frame update
     void Start()
@@ -47,12 +45,18 @@ public class sinScript : MonoBehaviour
 		if (sinOnlyOrbit)
         {
 			sinOrbitSin++;
-			transform.localPosition = new Vector3(Mathf.Sin(sinOrbitSin * xSinOrbitRate * sinUniOrbitRate / 10) * xSinOrbit * sinUniOrbit, Mathf.Sin(sinOrbitSin * ySinOrbitRate * sinUniOrbitRate / 10) * ySinOrbit * sinUniOrbit);
+			if (Mathf.Sin(sinOrbitSin * xSinOrbitRate / sinUniOrbitRate / 10 + sinOrbitOffsetX) >= 0.8)
+			{
+				zVal = 1;
+			}
+			else if (Mathf.Sin(sinOrbitSin * xSinOrbitRate / sinUniOrbitRate / 10 + sinOrbitOffsetX) <= -0.8)
+            {
+				zVal = -1;
+            }
+			transform.localPosition = new Vector3(
+				(Mathf.Sin(sinOrbitSin * xSinOrbitRate / sinUniOrbitRate / 10 + sinOrbitOffsetX) * xSinOrbit * sinUniOrbit),
+				(Mathf.Sin(sinOrbitSin * ySinOrbitRate / sinUniOrbitRate / 10 + sinOrbitOffsetY) * ySinOrbit * sinUniOrbit),
+				zVal);
         }
-		if (scaler)
-		{
-			scaleSin++;
-			transform.localScale += new Vector3(Mathf.Sin(scaleSin * scaleRate/10) * (xScaler*uniScaler/10),Mathf.Sin(scaleSin * scaleRate/10) * (yScaler*uniScaler/10));
-		}
     }
 }

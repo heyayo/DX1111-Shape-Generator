@@ -13,11 +13,11 @@ public class MeshObject : MonoBehaviour
 	
 	// Intialization Values
     [SerializeField]
-    float InitialxScale = 1;
+    public float InitialxScale = 1;
     [SerializeField]
-    float InitialyScale = 1;
+    public float InitialyScale = 1;
     [SerializeField]
-    float Initialrotation = 0;
+    public float Initialrotation = 0;
     [SerializeField]
     int resolution = 3;
     [SerializeField]
@@ -56,8 +56,6 @@ public class MeshObject : MonoBehaviour
         MeshData meshData = MeshGenerator.GenerateShape(InitialxScale, InitialyScale, resolution, Initialrotation);
         mesh.vertices = meshData.vertices;
         mesh.triangles = meshData.triangles;
-        Debug.Log(meshData.vertices);
-        Debug.Log(meshData.triangles);
     }
 
     void FixedUpdate()

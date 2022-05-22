@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8290710365123618115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7471219, y: 0.28508803, z: -0.43790707}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,16 +98,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshType: 0
   startAtOrigin: 0
-  waveRotate: 0
-  xScale: 0.1
-  yScale: 0.1
-  rotation: 0
+  InitialxScale: 1
+  InitialyScale: 1
+  Initialrotation: 0
   resolution: 3
-  color: {r: 0, g: 0, b: 0, a: 0}
-  yBounce: 1
-  xBounce: 1
-  xDist: 1
-  yDist: 1
-  rotateRate: 0
-  rotate: 0
+  Initialcolor: {r: 0, g: 0, b: 0, a: 0}
+  scaling: 0
+  xScaleRate: 0
+  yScaleRate: 0
   parent: {fileID: 0}

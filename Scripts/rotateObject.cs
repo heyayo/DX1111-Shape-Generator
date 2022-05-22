@@ -6,7 +6,7 @@ public class rotateObject : MonoBehaviour
 {
 	float sinGen = 0;
 	public bool rotate = false;
-	public float rotateSpeed = 1;
+	float rotateSpeed = 1;
 	public float rotateRate = 1;
 	public bool rotateSin = false;
 	public float sinLength = 1;
@@ -24,9 +24,9 @@ public class rotateObject : MonoBehaviour
 			if (rotateSin)
 			{
 				sinGen++;
-				rotateSpeed = Mathf.Sin(sinGen * rotateRate) * sinLength;
+				rotateSpeed = Mathf.Sin(sinGen * rotateRate/10) * sinLength;
 			}
-			transform.Rotate(0,0,rotateSpeed * rotateRate);
+			transform.Rotate(0,0,rotateSpeed * rotateRate/10);
 		}
         
     }
