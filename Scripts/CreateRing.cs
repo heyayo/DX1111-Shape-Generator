@@ -20,7 +20,7 @@ public class CreateRing : MonoBehaviour
         GameObject parent = gameObject;
         for (int i = 0; i < ringCount; i++)
         {
-            GameObject newring = Instantiate(ring, transform);
+            GameObject newring = Instantiate(ring,transform);
             sinScriptOffset ringScript = newring.AddComponent<sinScriptOffset>();
             newring.transform.Rotate(0, 0, UnityEngine.Random.Range(0,90));
             ringScript.sinOrbitOffsetX = i * ringXOffset;

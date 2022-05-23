@@ -26,47 +26,77 @@ public enum MeshType
 
 public class MeshGenerator
 {
-    public static MeshData GenerateShape(float xScale, float yScale, int res, float degrotate)
+    public static MeshData GenerateShape(float xScale, float yScale, int res, float degrotate, bool star)
     {
         MeshData mesh = new MeshData();
 
-        Debug.Log(xScale);
-        Debug.Log(yScale);
-        Debug.Log("SCALES");
-
-        mesh.vertices = new Vector3[res + 1];
         float switchAngle = (2 * Mathf.PI) / res;
         float rotation = degrotate * Mathf.Deg2Rad;
 
-        mesh.vertices[0] = new Vector3(0,0);
-        for (int i = 0; i < res; i++)
+        if (star)
         {
-            mesh.vertices[i+1] = new Vector3(Mathf.Sin(switchAngle * i + rotation) * xScale, Mathf.Cos(switchAngle * i + rotation) * yScale);
-            Debug.Log(mesh.vertices[i+1]);
-            Debug.Log(switchAngle * i);
-            Debug.Log("VERTICE");
-            Debug.Log(rotation);
-            Debug.Log("RADIANS");
-        }
-
-        mesh.triangles = new int[res * 3];
-
-        for (int i = 0; i < res; i++)
-        {
-            mesh.triangles[i * 3] = 0;
-            mesh.triangles[(i * 3) + 1] = i + 1;
-            if (i == res - 1)
+            mesh.vertices = new Vector3[(res * 2) + 1];
+            mesh.vertices[0] = new Vector3(0,0);
+            for (int i = 0; i < res; i++)
             {
-                mesh.triangles[(i * 3) + 2] = 1;
+                mesh.vertices[i+1] = new Vector3(Mathf.Sin(switchAngle * i + rotation) * xScale, Mathf.Cos(switchAngle * i + rotation) * yScale);
             }
-            else
+            for (int i = 0; i < res; i++)
             {
-                mesh.triangles[(i * 3) + 2] = i + 2;
+                mesh.vertices[res + i + 1] = new Vector3(Mathf.Sin((switchAngle / 2 + switchAngle * i) + rotation) * xScale * 2, Mathf.Cos((switchAngle / 2 + switchAngle * i) + rotation) * yScale * 2);
+            }
+        }
+        else
+        {
+            mesh.vertices = new Vector3[res + 1];
+            mesh.vertices[0] = new Vector3(0,0);
+            for (int i = 0; i < res; i++)
+            {
+                mesh.vertices[i+1] = new Vector3(Mathf.Sin(switchAngle * i + rotation) * xScale, Mathf.Cos(switchAngle * i + rotation) * yScale);
+            }
+        }
+        
+        if (star)
+        {
+            mesh.triangles = new int[res * 6];
+
+            for (int i = 0; i < res; i ++)
+            {
+                mesh.triangles[i * 6] = 0;
+                mesh.triangles[(i * 6) + 1] = i + 1;
+                mesh.triangles[(i * 6) + 2] = i + 1 + res;
+                mesh.triangles[(i * 6) + 3] = 0;
+                mesh.triangles[(i * 6) + 4] = i + 1 + res;
+                if (i == res - 1)
+                {
+                    mesh.triangles[(i * 6) + 5] = 1;
+                }
+                else
+                {
+                    mesh.triangles[(i * 6) + 5] = i + 2;
+                }
+            }
+        }
+        else
+        {
+            mesh.triangles = new int[res * 3];
+
+            for (int i = 0; i < res; i++)
+            {
+                mesh.triangles[i * 3] = 0;
+                mesh.triangles[(i * 3) + 1] = i + 1;
+                if (i == res - 1)
+                {
+                    mesh.triangles[(i * 3) + 2] = 1;
+                }
+                else
+                {
+                    mesh.triangles[(i * 3) + 2] = i + 2;
+                }
             }
         }
 
         return mesh;
-
     }
     public static MeshData Generate(MeshType meshType)
     {

@@ -10,6 +10,9 @@ public class MeshObject : MonoBehaviour
 
     [SerializeField]
     bool startAtOrigin = false;
+
+    [SerializeField]
+    bool isStar = false;
 	
 	// Intialization Values
     [SerializeField]
@@ -53,7 +56,7 @@ public class MeshObject : MonoBehaviour
     {
         mesh.Clear();
 
-        MeshData meshData = MeshGenerator.GenerateShape(InitialxScale, InitialyScale, resolution, Initialrotation);
+        MeshData meshData = MeshGenerator.GenerateShape(InitialxScale, InitialyScale, resolution, Initialrotation, isStar);
         mesh.vertices = meshData.vertices;
         mesh.triangles = meshData.triangles;
     }
