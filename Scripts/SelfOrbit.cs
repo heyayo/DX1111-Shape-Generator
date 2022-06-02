@@ -13,13 +13,13 @@ public class SelfOrbit : MonoBehaviour
     {
         
     }
-
     // Update is called once per frame
     void Update()
     {
         if (lockOrbit)
         {
-            transform.LookAt(target);
+            transform.right = target.position - transform.position;
+            transform.Rotate(0, 0, 90);
         }
     }
     private void FixedUpdate()
